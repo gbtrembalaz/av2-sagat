@@ -1,0 +1,52 @@
+
+function atualizarNome() {
+    var nomeInput = document.getElementById("nome");
+    var nivelInput = document.getElementById("nivel");
+    var nome = nomeInput.value;
+    var nivel = nivelInput.value;
+    nome = nome.trim();
+
+    if (nivel <= 5) {
+      nome += " [INICIANTE]";
+    } else {
+      nome += " [VETERANO]";
+    }
+
+    nomeInput.value = nome;
+  }
+
+  function atualizarPoderAtaque() {
+    var forcaInput = document.getElementById("forca");
+    var nivelInput = document.getElementById("nivel");
+    var poderInput = document.getElementById("poder");
+    var forca = parseInt(forcaInput.value);
+    var nivel = parseInt(nivelInput.value);
+
+    var poder = (forca - 10) / 2 + nivel / 2;
+    poderInput.value = poder;
+  }
+
+  function atualizarDefesa() {
+    var agilidadeInput = document.getElementById("agilidade");
+    var armaduraInput = document.getElementById("armadura");
+    var defesaInput = document.getElementById("defesa");
+    var agilidade = parseInt(agilidadeInput.value);
+    var armadura = parseInt(armaduraInput.value);
+
+    var defesa = agilidade + armadura;
+    defesaInput.value = defesa;
+  }
+
+  
+  document.getElementById("nome").addEventListener("input", atualizarNome);
+  document.getElementById("nivel").addEventListener("input", function () {
+    atualizarNome();
+    atualizarPoderAtaque();
+  });
+  document.getElementById("forca").addEventListener("input", atualizarPoderAtaque);
+  document.getElementById("agilidade").addEventListener("input", atualizarDefesa);
+  document.getElementById("armadura").addEventListener("input", atualizarDefesa);
+
+atualizarNome();
+  atualizarPoderAtaque();
+  atualizarDefesa();
